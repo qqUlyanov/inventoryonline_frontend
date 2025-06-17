@@ -153,7 +153,7 @@ const loading = ref(true)
 onMounted(async () => {
   try {
     // Получаем текущего пользователя
-    await axios.get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
     const userResp = await axios.get('/api/user', {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },

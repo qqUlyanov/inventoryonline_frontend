@@ -238,7 +238,7 @@ async function fetchCurrentUser() {
 
 async function fetchRequests(page = 1) {
   try {
-    await axios.get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
     const response = await axios.get('/api/asset-requests', {
       params: { page },
@@ -324,7 +324,7 @@ function closeContextMenu() {
 async function approveRequest(req) {
   contextMenu.value.visible = false
   try {
-    await axios.get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
     await axios.post(
       `/api/asset-requests/${req.id}/approve`,
@@ -362,7 +362,7 @@ function openRejectModal(req) {
 async function rejectRequest() {
   showRejectModal.value = false
   try {
-    await axios.get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
     await axios.post(
       `/api/asset-requests/${rejectRequestId.value}/reject`,

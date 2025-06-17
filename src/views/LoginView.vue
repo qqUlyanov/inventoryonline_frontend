@@ -59,12 +59,12 @@ export default {
   methods: {
     submitForm() {
       this.$axios
-        .get('http://localhost:8000/sanctum/csrf-cookie')
+        .get('http://api.inventoryonline.ru/sanctum/csrf-cookie')
         .then(() => {
           const token = Cookies.get('XSRF-TOKEN')
           this.$axios
             .post(
-              'http://localhost:8000/login',
+              'http://api.inventoryonline.ru/login',
               {
                 email: this.formData.email,
                 password: this.formData.password,

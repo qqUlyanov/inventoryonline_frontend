@@ -11,7 +11,6 @@
           Выделено: {{ Array.isArray(selected) ? selected.length : 0 }}
         </div>
         <div class="flex gap-2">
-          
           <button
             class="flex items-center gap-1 px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 text-gray-800"
             @click="showRequestModal = true"
@@ -507,7 +506,7 @@ async function submitRequest() {
     }
 
     // --- сначала оформляем заявку, потом меняем статус только после одобрения админом ---
-    await axios.get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
 
     const payload = {

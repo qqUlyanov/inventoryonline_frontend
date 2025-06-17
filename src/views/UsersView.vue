@@ -189,7 +189,7 @@ function deleteUser(user) {
     contextMenu.value.visible = false
     return
   }
-  axios.get('http://localhost:8000/sanctum/csrf-cookie').then(() => {
+  axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie').then(() => {
     const token = localStorage.getItem('token')
     const xsrf = document.cookie
       .split('; ')

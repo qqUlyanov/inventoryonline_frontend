@@ -35,10 +35,20 @@
               <div class="w-full h-full rounded-full bg-gray-300 animate-pulse"></div>
             </template>
             <!-- Кнопка смены аватара -->
-            <div v-if="isEditing && isAdmin" class="absolute inset-0 flex flex-col items-center justify-center bg-black/40 cursor-pointer group" @click="triggerAvatarSelect">
+            <div
+              v-if="isEditing && isAdmin"
+              class="absolute inset-0 flex flex-col items-center justify-center bg-black/40 cursor-pointer group"
+              @click="triggerAvatarSelect"
+            >
               <i class="ri-upload-cloud-2-line text-2xl mb-1 text-white"></i>
               <span class="text-xs text-white">Сменить аватар</span>
-              <input ref="avatarInput" type="file" accept="image/*" class="hidden" @change="onAvatarChange" />
+              <input
+                ref="avatarInput"
+                type="file"
+                accept="image/*"
+                class="hidden"
+                @change="onAvatarChange"
+              />
             </div>
           </div>
           <div class="flex items-center gap-2 rounded-lg px-4 py-2 z-10 flex-col w-full">
@@ -501,7 +511,7 @@ onMounted(async () => {
 async function deleteUser() {
   if (!confirm('Вы действительно хотите удалить этого пользователя?')) return
   try {
-    await axios.get('http://localhost:8000/sanctum/csrf-cookie')
+    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie')
     const token = Cookies.get('XSRF-TOKEN')
     await axios.delete(`/api/users/${userId}`, {
       headers: {
@@ -552,7 +562,7 @@ const userChangedMessage = ref('')
 async function saveUserEdit() {
   userChangedMessage.value = ''
   try {
-    await axios.get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
     const prevUser = { ...user.value }
     let data, headers
@@ -588,11 +598,7 @@ async function saveUserEdit() {
         },
       }
     }
-    await axios.put(
-      `/api/users/${userId}`,
-      data,
-      headers
-    )
+    await axios.put(`/api/users/${userId}`, data, headers)
     isEditing.value = false
     selectedAvatar.value = null
     await fetchUserDetails()

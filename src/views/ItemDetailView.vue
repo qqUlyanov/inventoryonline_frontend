@@ -579,7 +579,7 @@ const filteredUsers = computed(() => {
 const transferToUser = async (targetUserId) => {
   if (!asset.value) return
   try {
-    await axios.get('http://localhost:8000/sanctum/csrf-cookie')
+    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie')
     const token = Cookies.get('XSRF-TOKEN')
     await axios.post(
       `/api/assets/${asset.value.id}/transfer`,
@@ -613,7 +613,7 @@ const deleteAsset = async () => {
     else if (asset.value.user && asset.value.user.user_id) userId = asset.value.user.user_id
     if (userId) userId = String(userId)
 
-    await axios.get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
     // ВАЖНО: 500 ошибка — это проблема на сервере, а не во фронте!
     // Проверьте, что на сервере реализован метод destroy (delete) для /api/assets/{id}
@@ -711,7 +711,7 @@ async function saveEdit() {
   if (!asset.value) return
   try {
     // 1. Обновляем CSRF cookie
-    await axios.get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
 
     // 2. Формируем данные

@@ -32,7 +32,7 @@
             'absolute -top-2 -right-2 bg-red-600 text-white text-xs flex items-center justify-center animate-bounce-slow',
             'notification-badge',
           ]"
-          style="pointer-events: none; z-index: 10;"
+          style="pointer-events: none; z-index: 10"
           >{{ unreadCount }}</span
         >
       </div>
@@ -184,7 +184,9 @@ async function fetchNotifications() {
 async function markAllNotificationsRead() {
   if (unreadCount.value > 0) {
     try {
-      await axios.get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true })
+      await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', {
+        withCredentials: true,
+      })
       const token = Cookies.get('XSRF-TOKEN')
       await axios.post(
         '/api/notifications/read',
