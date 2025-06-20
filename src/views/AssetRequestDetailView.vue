@@ -361,7 +361,7 @@ const isAdmin = ref(false)
 onMounted(async () => {
   // Получаем роль пользователя
   try {
-    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('https://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const userResp = await axios.get('/api/user', {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     })
@@ -389,7 +389,7 @@ const backgroundImage = computed(() => {
 async function fetchRequest() {
   loading.value = true
   try {
-    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('https://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
     const response = await axios.get(`/api/asset-requests/${route.params.id}`, {
       headers: {
@@ -421,7 +421,7 @@ function formatDate(val) {
 async function approveRequest() {
   loading.value = true
   try {
-    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('https://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
     // --- логика для смены техники ---
     if (request.value.operation === 'change') {
@@ -507,7 +507,7 @@ async function approveRequest() {
 async function completeRepair() {
   loading.value = true
   try {
-    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('https://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
     await axios.post(
       `/api/asset-requests/${route.params.id}/complete`,
@@ -551,7 +551,7 @@ async function rejectRequest() {
   showRejectModal.value = false
   loading.value = true
   try {
-    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('https://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
     await axios.post(
       `/api/asset-requests/${route.params.id}/reject`,
@@ -630,7 +630,7 @@ async function confirmFreeAsset() {
   if (!selectedFreeAssetId.value) return
   loading.value = true
   try {
-    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('https://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
     // 1. Отвязать старую технику от пользователя (status = 'Свободен', user_id = null)
     for (const oldAsset of request.value.assets || []) {
@@ -692,7 +692,7 @@ async function onNewAssetCreated(asset) {
   if (!asset || !asset.id) return
   loading.value = true
   try {
-    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('https://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
     // 1. Отвязать старую технику от пользователя (status = 'Свободен', user_id = null)
     for (const oldAsset of request.value.assets || []) {

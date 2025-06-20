@@ -144,7 +144,7 @@ function handleResize() {
 onMounted(() => {
   window.addEventListener('resize', handleResize)
   axios
-    .get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
+    .get('https://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     .then(() => {
       const token = localStorage.getItem('token')
       return axios.get('/api/asset-requests', {

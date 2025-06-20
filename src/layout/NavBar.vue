@@ -184,7 +184,7 @@ async function fetchNotifications() {
 async function markAllNotificationsRead() {
   if (unreadCount.value > 0) {
     try {
-      await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', {
+      await axios.get('https://api.inventoryonline.ru/sanctum/csrf-cookie', {
         withCredentials: true,
       })
       const token = Cookies.get('XSRF-TOKEN')

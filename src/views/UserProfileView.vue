@@ -180,7 +180,7 @@ function cancelEdit() {
 }
 async function saveEdit() {
   try {
-    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie')
+    await axios.get('https://api.inventoryonline.ru/sanctum/csrf-cookie')
     const token = Cookies.get('XSRF-TOKEN')
     await axios.put(
       `/api/users/${user.value.id}`,
@@ -219,10 +219,10 @@ const backgroundImage = computed(() => {
 
 const logout = async () => {
   try {
-    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie')
+    await axios.get('https://api.inventoryonline.ru/sanctum/csrf-cookie')
     const token = Cookies.get('XSRF-TOKEN')
     await axios.post(
-      'http://api.inventoryonline.ru/logout',
+      'https://api.inventoryonline.ru/logout',
       {},
       {
         headers: {

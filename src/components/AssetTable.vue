@@ -506,7 +506,7 @@ async function submitRequest() {
     }
 
     // --- сначала оформляем заявку, потом меняем статус только после одобрения админом ---
-    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('https://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
 
     const payload = {

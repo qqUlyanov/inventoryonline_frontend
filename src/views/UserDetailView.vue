@@ -511,7 +511,7 @@ onMounted(async () => {
 async function deleteUser() {
   if (!confirm('Вы действительно хотите удалить этого пользователя?')) return
   try {
-    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie')
+    await axios.get('https://api.inventoryonline.ru/sanctum/csrf-cookie')
     const token = Cookies.get('XSRF-TOKEN')
     await axios.delete(`/api/users/${userId}`, {
       headers: {
@@ -562,7 +562,7 @@ const userChangedMessage = ref('')
 async function saveUserEdit() {
   userChangedMessage.value = ''
   try {
-    await axios.get('http://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
+    await axios.get('https://api.inventoryonline.ru/sanctum/csrf-cookie', { withCredentials: true })
     const token = Cookies.get('XSRF-TOKEN')
     const prevUser = { ...user.value }
     let data, headers
