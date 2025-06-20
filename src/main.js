@@ -11,7 +11,7 @@ const app = createApp(App)
 
 app.config.globalProperties.$axios = axios
 axios.defaults.withCredentials = true
-axios.defaults.baseURL = 'http://localhost:8000'
+axios.defaults.baseURL = 'https://api.inventoryonline.ru'
 
 axios.defaults.xsrfCookieName = 'XSRF-TOKEN'
 axios.defaults.xsrfHeaderName = 'X-XSRF-TOKEN'
