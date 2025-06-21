@@ -48,6 +48,7 @@
 import Cookies from 'js-cookie'
 export default {
   data() {
+    console.log('LoginView data() инициализирован')
     return {
       formData: {
         email: '',
@@ -56,12 +57,17 @@ export default {
       validationErrors: {},
     }
   },
+  mounted() {
+    console.log('LoginView mounted')
+  },
   methods: {
     submitForm() {
+      console.log('CSRF cookie URL:', 'https://api.inventoryonline.ru/sanctum/csrf-cookie')
       this.$axios
         .get('https://api.inventoryonline.ru/sanctum/csrf-cookie')
         .then(() => {
           const token = Cookies.get('XSRF-TOKEN')
+          console.log('Login URL:', 'https://api.inventoryonline.ru/login')
           this.$axios
             .post(
               'https://api.inventoryonline.ru/login',

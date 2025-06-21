@@ -7,11 +7,11 @@
 
     <!-- Контейнер с логином по центру -->
     <div class="flex items-center justify-center min-h-screen">
-      <LoginView />
+      <router-view />
     </div>
   </div>
 </template>
 
 <script setup>
-import LoginView from '@/views/LoginView.vue'
+// ...existing code...
 </script>
